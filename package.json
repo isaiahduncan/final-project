@@ -1,0 +1,27 @@
+{
+    "name": "final-project",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.17.1",
+        "dotenv": "^8.2.0",
+        "express": "^4.15.2",
+        "express-handlebars": "^3.0.0",
+        "jquery": "^3.4.1",
+        "mongoose": "^5.9.7",
+        "morgan": "^1.8.1",
+        "socket.io": "^2.3.0",
+        "underscore": "^1.8.3"
+    },
+    "devDependencies": {
+        "jshint": "^2.11.0",
+        "nodemon": "^2.0.3"
+    }
+}

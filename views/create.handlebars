@@ -1,0 +1,32 @@
+<h1>Create New Artist</h1>
+<article>
+    <form id="newArtist" method="POST" action="/create"> {{!--  --}}
+        <div class="input-field">
+            <label>Artist Name</label>
+            <input id="name" type="text" name="name" size="50" placeholder="Name of Artist">
+        </div>
+         <div class="input-field">
+            <label>Artist Label</label>
+            <input id="label" type="text" name="label" size="50" placeholder="Artist Label">
+        </div>
+        <div class="input-field">
+            <label>Genre</label>
+            <input id="genre" type="text" name="genre" size="50" placeholder="What genre is this artist in?"></input>
+        </div>
+        <div class="input-field">
+            <label>IG Followers</label>
+            <input id="igf" type="text" name="IGFollowers" size="50" placeholder="How many IG Followers does the artist have?"></input>
+        </div>
+        <div class="input-field">
+            <label>Ref or Slug</label>
+            <input id="ref" type="text" name="ref" size="50" placeholder="artist-name"></input>
+        </div>
+        <div class="input-field">
+            <label>Image src</label>
+            <input id="src" type="text" name="src" size="70" placeholder="Paste a link to a picture for this artist or leave it empty for a default pic"></input>
+        </div>
+        <div><p id="update"></p></div>
+        <button  type="submit">Add A New Artist</button>
+
+    </form>
+</article>

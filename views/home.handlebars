@@ -1,0 +1,28 @@
+{{#if genre}}
+<h2>{{genre}} Artists: </h2> 
+{{else}}
+<h2>All Musical Artists</h2> 
+{{/if}}
+
+{{#each data}}
+<article>
+	<h2 class="title">{{this.name}}</h2> <i>{{this.label}}</i>
+	<hr>
+	<div class="content">
+	    Albums: {{#each this.albums}}
+					{{this.name}}:{{this.year}};
+					{{/each}}<br>
+        Genre: {{this.genre}}<br>
+        IG Followers: {{this.IGFollowers}}<br>
+		Artist id: {{this.id}}<br><br>
+		<a href="/artist/{{this.ref}}">Go to this artist's page!</a>
+	</div>
+	<img src="{{this.src}}" style="display:inline-block" class="homepics" align="right">
+</article>
+{{else}}
+
+<article>
+    <h1>There are no artists yet. :(</h1>
+    <a href="/create">Input your first Artist!</a>
+</article>
+{{/each}}

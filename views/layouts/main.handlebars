@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/public/css/main.css">
+  <title>Final Project</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+</head>
+
+<body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+  <div class="container">
+    <br><br>
+
+    {{#if hlpscrpt}}
+      <label>Search Your Favs:</label><textarea id="search"></textarea>
+    {{/if}}
+
+		{{>nav}}
+    <div id="artistholder">{{{body}}}</div>
+	</div>
+  <script>
+    var socket = io();
+
+    socket.on('new artist', function(mov){
+      $('#name').val('')
+      $('#genre').val('')
+      $('#label').val('')
+      $('#src').val('')
+      $('#ref').val('')
+      $('#igf').val('')
+      console.log("talk that talk")
+      $('#update').append(mov.name + ' was added<br>');
+    });
+
+    /*$('#newArtist').submit(function(){
+      var nm = $('#name').val()
+      var gen = $('#genre').val()
+      var lab = $('#label').val()
+      var sr = $('#src').val()
+      var rf = $('#ref').val()
+      var igf = $('#igf').val()
+
+      $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/api/artist',
+            headers: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            form: { 
+              name: nm,
+              genre: gen, 
+              label: lab, 
+              src: sr, 
+              ref: rf, 
+              IGFollowers: igf
+            },
+            success: function(data, status){
+                console.log(data + "idk just indicate to me that something happened");              
+            }
+        }); 
+        
+
+        return false;
+    })*/
+
+    $('#search').on( 'keyup', function () {
+      var search = document.getElementById("search").value
+      console.log("\""+search+"\"")
+      var data = JSON.parse(document.getElementById("cht").innerText)//document.getElementById("cht").innerText
+
+      if(search != ""){
+        
+        var show = []
+        for( artist of data ){
+
+          if(artist.name.toLowerCase().includes(search.toLowerCase())){
+            console.log(artist.name)
+            show.push(artist)
+          }
+        } 
+        var newHtml = "<h2>All Musical Artists</h2>\n"
+        for(artist of show){
+          newHtml += "<article>\n"
+          newHtml += `<h2 class="title">${artist.name}</h2> <i>${artist.label}</i>\n`
+          newHtml += "<hr>\n"
+          newHtml += "<div class=\"content\">\n"
+          newHtml += `Albums: ${JSON.stringify(artist.albums)}<br>\n`
+          newHtml += `Genre: ${artist.genre}<br>\n`
+          newHtml += `IG Followers: ${artist.IGFollowers}<br>\n`
+          newHtml += `Artist id: ${artist._id}<br><br>\n`
+          newHtml += `<a href="/artist/${this.ref}">Go to this artist's page!</a>`
+          newHtml += "</div>"
+          newHtml += "</article>"
+        }
+        document.getElementById("artistholder").innerHTML = newHtml
+        
+        console.log("slat slat")
+      } else {
+        var newHtml = "<h2>All Musical Artists</h2>\n"
+        for(artist of data){
+          newHtml += "<article>\n"
+          newHtml += `<h2 class="title">${artist.name}</h2> <i>${artist.label}</i>\n`
+          newHtml += "<hr>\n"
+          newHtml += "<div class=\"content\">\n"
+          newHtml += `Albums: ${JSON.stringify(artist.albums)}<br>\n`
+          newHtml += `Genre: ${artist.genre}<br>\n`
+          newHtml += `IG Followers: ${artist.IGFollowers}<br>\n`
+          newHtml += `Artist id: ${artist._id}<br><br>\n`
+          newHtml += `<a href="/artist/${this.ref}">Go to this artist's page!</a>`
+          newHtml += "</div>"
+          newHtml += "</article>"
+        }
+        document.getElementById("artistholder").innerHTML = newHtml
+      }
+    });
+
+    $('#createNew').on('click', function() {
+      console.log("hi");
+    });
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+  <p id="cht" style="display: none;">
+	{{{hlpscrpt}}}</p>
+</body>
+
+</html>

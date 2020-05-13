@@ -1,0 +1,11 @@
+<div class="nav">
+    <h1>Popular Artists</h1>
+    {{#if genres}}
+    <div class="genres">
+    	{{#each genres}}
+	        <a href="/genre/{{this}}" class="genre">{{this}}</a>
+        {{/each}}
+    </div>
+    {{/if}}
+</div>
+<br><hr>
