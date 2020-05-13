@@ -177,7 +177,7 @@ app.post('/create', function(req, res) {
 
   var options = {
     method: 'POST',
-    url: PORT == 3000 ? 'http://localhost:3000/api/artist' : "https://cmsc389k-artists.herokuapp.com/api/artist",
+    url: !process.env.PORT ? 'http://localhost:3000/api/artist' : "https://cmsc389k-artists.herokuapp.com/api/artist",
     headers: {
         'content-type': 'application/x-www-form-urlencoded'
     },
@@ -211,7 +211,7 @@ app.post('/createAlbum', function(req, res) {
 
   var options = {
     method: 'POST',
-    url: PORT == 3000 ? `http://localhost:3000/api/${body.id}/album` : `https://cmsc389k-artists.herokuapp.com/api/${body.id}/album`,
+    url: !process.env.PORT ? `http://localhost:3000/api/${body.id}/album` : `https://cmsc389k-artists.herokuapp.com/api/${body.id}/album`,
     headers: {
         'content-type': 'application/x-www-form-urlencoded'
     },
